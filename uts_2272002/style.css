@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 0;
+}
+canvas {
+    border: 2px solid black;
+    margin-top: 15px;
+}
+.controls {
+    margin: 10px;
+}
+.slider {
+    width: 200px;
+}
+.button {
+    background-color: blue; 
+    color: white; 
+    border-radius: 10px; 
+    padding: 5px 10px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    align-items: center;
+    justify-content: center;
+}
+
+.button:hover {
+    background-color: darkblue; 
+}
