@@ -3,11 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brightness Control with Custom Curtain</title>
+    <title>Weird UI - Brightness slider using curtain</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="canvas" width="500" height="500"></canvas>
-    <script src="lib.js"></script>
+    <canvas id="canvas"></canvas>
+    
+    <div class="taskbar">
+        <div class="taskbar-icon" id="brightness-icon">☀️</div> 
+        <div class="taskbar-icon">🔊</div> <!-- Icon Volume -->
+        <div class="taskbar-icon">🛜</div> <!-- Icon Wi-Fi -->
+        <div class="taskbar-icon">🔋</div> <!-- Icon Battery -->
+        <div class="taskbar-time">
+            <div class="time" id="time">12:30 PM</div>
+            <div class="date" id="date">11/01/2024</div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { ImageLib } from './lib.js';
+        
+        const canvas = document.getElementById('canvas');
+        const brightnessIcon = document.getElementById('brightness-icon');
+        const imageLib = new ImageLib('canvas');
+
+        brightnessIcon.addEventListener('click', () => {
+            canvas.style.display = canvas.style.display === 'none' ? 'block' : 'none';
+        });
+
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours() % 12 || 12;
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+            const timeString = `${hours}:${minutes} ${ampm}`;
+            const dateString = now.toLocaleDateString();
+
+            document.getElementById('time').textContent = timeString;
+            document.getElementById('date').textContent = dateString;
+        }
+        
+        setInterval(updateTime, 1000);
+        updateTime(); 
+    </script>
 </body>
 </html>
